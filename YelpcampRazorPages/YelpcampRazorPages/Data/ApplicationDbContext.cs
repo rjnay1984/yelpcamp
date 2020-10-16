@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using YelpcampRazorPages.Models;
 
 namespace YelpcampRazorPages.Data
 {
@@ -12,5 +13,6 @@ namespace YelpcampRazorPages.Data
             : base(options)
         {
         }
+        public DbSet<YelpcampRazorPages.Models.Campground> Campground { get; set; }
     }
 }
