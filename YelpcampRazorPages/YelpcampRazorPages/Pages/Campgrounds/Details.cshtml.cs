@@ -28,7 +28,7 @@ namespace YelpcampRazorPages.Pages.Campgrounds
                 return NotFound();
             }
 
-            Campground = await _context.Campground.FirstOrDefaultAsync(m => m.CampgroundId == id);
+            Campground = await _context.Campground.Include(m => m.Comments).FirstOrDefaultAsync(m => m.CampgroundId == id);
 
             if (Campground == null)
             {
