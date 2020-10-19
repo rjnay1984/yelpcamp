@@ -14,5 +14,6 @@ namespace YelpcampRazorPages.Data
         {
         }
         public DbSet<YelpcampRazorPages.Models.Campground> Campground { get; set; }
+        public DbSet<YelpcampRazorPages.Models.Comment> Comment { get; set; }
     }
 }
