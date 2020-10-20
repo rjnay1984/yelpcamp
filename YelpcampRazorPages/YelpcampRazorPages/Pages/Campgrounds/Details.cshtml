@@ -36,17 +36,7 @@
             @Html.DisplayFor(model => model.Campground.Body)
         </dd>
     </dl>
-    @if (Model.Campground.Comments.Count > 0)
-    {
-        <h5>Comments</h5>
-        <hr />
-        <dl class="row">
-            @foreach (var comment in Model.Campground.Comments)
-            {
-                <dd class="col-sm-12">@comment.Body</dd>
-            }
-        </dl>
-    }
+    @await Component.InvokeAsync("CommentList", new { campgroundId = Model.Campground.CampgroundId })
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Campground.CampgroundId">Edit</a> |
