@@ -37,6 +37,21 @@
         </dd>
     </dl>
     @await Component.InvokeAsync("CommentList", new { campgroundId = Model.Campground.CampgroundId })
+    <h5>Add a comment!</h5>
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="Comment.CampgroundId" value="@Model.Campground.CampgroundId" hidden />
+
+        <div class="form-group">
+            <label asp-for="Comment.Body" class="control-label"></label>
+            <input asp-for="Comment.Body" class="form-control" />
+            <span asp-validation-for="Comment.Body" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Campground.CampgroundId">Edit</a> |

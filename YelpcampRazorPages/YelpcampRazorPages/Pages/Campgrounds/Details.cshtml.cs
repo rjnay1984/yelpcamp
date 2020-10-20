@@ -38,5 +38,22 @@ namespace YelpcampRazorPages.Pages.Campgrounds
             }
             return Page();
         }
+
+        [BindProperty]
+        
+        public Comment Comment { get; set; }
+
+        public async Task<IActionResult> OnPostAsync(Comment comment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Comment.Add(comment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Index");
+        }
     }
 }
