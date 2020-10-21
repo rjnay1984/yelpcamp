@@ -36,7 +36,7 @@
             @Html.DisplayFor(model => model.Campground.Body)
         </dd>
     </dl>
-    @await Component.InvokeAsync("CommentList", new { campgroundId = Model.Campground.CampgroundId })
+    @await Html.PartialAsync("_CommentList") 
     <h5>Add a comment!</h5>
     <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>

@@ -1,0 +1,18 @@
+﻿@model YelpcampRazorPages.Pages.Campgrounds.DetailsModel
+
+<h5>Comments</h5>
+<hr />
+<dl class="row">
+    @if (Model.Campground.Comments.Count() > 0)
+    {
+        foreach(var comment in Model.Campground.Comments)
+        {
+            <dd class="col-sm-12">@comment.Body</dd>
+        }
+    }
+    else
+    {
+        <dd class="col-sm-12">No comments.</dd>
+    }
+</dl>
+
