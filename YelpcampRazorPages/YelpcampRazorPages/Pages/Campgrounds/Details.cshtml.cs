@@ -53,7 +53,7 @@ namespace YelpcampRazorPages.Pages.Campgrounds
             _context.Comment.Add(comment);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage();
         }
     }
 }
