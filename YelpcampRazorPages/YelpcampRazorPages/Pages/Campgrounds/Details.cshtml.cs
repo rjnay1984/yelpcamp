@@ -28,13 +28,32 @@ namespace YelpcampRazorPages.Pages.Campgrounds
                 return NotFound();
             }
 
-            Campground = await _context.Campground.FirstOrDefaultAsync(m => m.CampgroundId == id);
+            Campground = await _context.Campground
+                .Include(m => m.Comments)
+                .FirstOrDefaultAsync(m => m.CampgroundId == id);
 
             if (Campground == null)
             {
                 return NotFound();
             }
             return Page();
+        }
+
+        [BindProperty]
+        
+        public Comment Comment { get; set; }
+
+        public async Task<IActionResult> OnPostAsync(Comment comment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Comment.Add(comment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage();
         }
     }
 }
