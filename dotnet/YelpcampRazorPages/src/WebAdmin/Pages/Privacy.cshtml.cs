@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace WebAdmin.Pages
+namespace YelpcampRazorPages.WebAdmin.Pages
 {
     public class PrivacyModel : PageModel
     {

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace WebAdmin
+namespace YelpcampRazorPages.WebAdmin
 {
     public class Program
     {
