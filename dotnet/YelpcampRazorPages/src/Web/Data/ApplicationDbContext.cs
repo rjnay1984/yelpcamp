@@ -13,5 +13,7 @@ namespace YelpcampRazorPages.Web.Data
             : base(options)
         {
         }
+
+        public DbSet<Campground> Campgrounds { get; set; }
     }
 }
