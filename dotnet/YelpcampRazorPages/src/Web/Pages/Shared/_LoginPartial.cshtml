@@ -3,7 +3,7 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{ 
-    string firstName = UserManager.GetUserAsync(User).Result.FirstName;
+    string firstName = UserManager.GetUserAsync(User).Result != null ? UserManager.GetUserAsync(User).Result.FirstName : null;
     string userName = firstName != null ? firstName : User.Identity.Name;
 }
 
