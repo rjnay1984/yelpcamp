@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+
+  identity_db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - identity_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: yelpcamp_identity
+
+  yelpcamp_db:
+    image: postgres
+    restart: always
+    ports:
+      - 5433:5433
+    volumes:
+      - yelpcamp_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: yelpcamp
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  identity_data: {}
+  yelpcamp_data: {}
