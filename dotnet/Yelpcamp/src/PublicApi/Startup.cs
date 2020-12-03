@@ -31,13 +31,46 @@ namespace Yelpcamp.PublicApi
 
         public IConfiguration Configuration { get; }
 
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+            // Use In Memory database
+            //ConfigureInMemoryDatabases(services);
+
+            // Use Production database
+            ConfigureProductionServices(services);
+
+        }
+
+        public void ConfigureDockerServices(IServiceCollection services)
+        {
+            ConfigureDevelopmentServices(services);
+        }
+
+        private void ConfigureInMemoryDatabases(IServiceCollection services)
+        {
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseInMemoryDatabase("Identity"));
+
+            ConfigureServices(services);
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)
+        {
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("IdentityConnection")));
+
+            ConfigureServices(services);
+
+        }
+
+        public void ConfigureTestingServices(IServiceCollection services)
+        {
+            ConfigureInMemoryDatabases(services);
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppIdentityDbContext>(options =>
-            {
-                options.UseNpgsql(Configuration.GetConnectionString("IdentityConnection"));
-            });
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
